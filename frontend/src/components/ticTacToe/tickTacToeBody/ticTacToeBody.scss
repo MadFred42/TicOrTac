@@ -1,0 +1,27 @@
+.tic-tac__body {
+    border: 2px solid black;
+    height: 50vh;
+    margin: 15% auto;
+    max-width: 50vh;
+}
+
+.tic-tac__item {
+    cursor: pointer;
+    width: 33.3333%;
+    height: 33.3333%;
+    border: 2px solid black;
+    float: left;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tic-tac__item > p {
+    font-size: 3em;
+    font-weight: 600;
+}
+
+.tic-tac__players-list {
+    list-style: none;
+}

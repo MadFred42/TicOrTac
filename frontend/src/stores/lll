@@ -1,0 +1,46 @@
+import { action, computed, makeAutoObservable, observable, toJS } from "mobx";
+import socket from "../socket";
+import { Users } from "../types/types";
+
+export default class UserStore {
+    _users: Users[];
+    _user: any;
+
+    constructor () {
+        this._users = [];
+        this._user = {};  
+
+        makeAutoObservable(this);
+    };
+
+    get users() {
+        return this._users;
+    };
+
+    get user() {
+        return this._user;
+    }
+
+    set user(user: Users) {
+        this._user = user
+    }
+
+    set allUsers(data: Array<Users>) {
+        console.log(data);
+        this._users = data;
+    };
+    
+    getUsers = () => {
+        console.log('update users');
+        socket.emit('getUsers', (users: Array<Users>) => {
+            this.allUsers = users;
+        });
+    };
+
+    sendUsername(username: string) {
+        socket.emit('setUser', { username }, (user: Users) => {
+            this.user = user;
+        });
+        // this.getUsers();
+    };
+};
